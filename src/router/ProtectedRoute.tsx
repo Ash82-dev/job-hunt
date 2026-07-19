@@ -1,9 +1,8 @@
-import { Outlet } from "react-router";
+import { Navigate } from "react-router";
+import { routes } from "./routes";
 
 function ProtectedRoute() {
-  // check if there is an authenticated user
-
-  return <Outlet />;
+  return <Navigate to={routes.register} replace />;
 }
 
 export default ProtectedRoute;

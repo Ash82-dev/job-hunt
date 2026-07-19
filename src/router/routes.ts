@@ -1,6 +1,8 @@
 export const routes = {
+  register: "/register",
   login: "/login",
-  home: "/",
+  forgetPassword: "/forgetPassword",
+  dashboard: "/",
   settings: "/settings",
   applicationDetail: "/application/:id",
 };

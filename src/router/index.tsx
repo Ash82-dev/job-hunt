@@ -6,7 +6,9 @@ import ProtectedRoute from "./ProtectedRoute";
 import AuthLayout from "../layouts/AuthLayout";
 import AppLayout from "../layouts/AppLayout";
 
+import Register from "../pages/Register";
 import Login from "../pages/Login";
+import ForgetPassword from "../pages/ForgetPassword";
 import Dashboard from "../pages/Dashboard";
 import ApplicationDetail from "../pages/ApplicationDetail";
 import Settings from "../pages/Settings";
@@ -22,8 +24,17 @@ export const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
           {
+            index: true,
+            path: routes.register,
+            element: <Register />,
+          },
+          {
             path: routes.login,
             element: <Login />,
+          },
+          {
+            path: routes.forgetPassword,
+            element: <ForgetPassword />,
           },
         ],
       },
@@ -37,6 +48,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
+            path: routes.dashboard,
             element: <Dashboard />,
           },
           {

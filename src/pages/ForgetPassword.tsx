@@ -1,14 +1,14 @@
 import { Link } from "react-router";
 import { routes } from "../router/routes";
 
-function Login() {
+function ForgetPassword() {
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Forget password</h1>
       <Link to={routes.register}>Register</Link>
-      <Link to={routes.forgetPassword}>Forget Password</Link>
+      <Link to={routes.login}>Login</Link>
     </div>
   );
 }
 
-export default Login;
+export default ForgetPassword;
