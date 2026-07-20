@@ -1,6 +1,6 @@
-import { routes } from "@/router/routes";
-import { LuSettings as SettingsIcon } from "react-icons/lu";
 import { useNavigate } from "react-router";
+import { LuSettings as SettingsIcon } from "react-icons/lu";
+import { routes } from "@/router/routes";
 
 function NavBarIcons() {
   const navigate = useNavigate();
