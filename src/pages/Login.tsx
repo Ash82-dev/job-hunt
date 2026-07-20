@@ -28,7 +28,7 @@ function Login() {
           />
           <Link
             to={routes.forgetPassword}
-            className="hover:underline hover:text-primary"
+            className="hover:underline hover:text-primary text-on-background"
           >
             Have you forgot your Password?
           </Link>
@@ -39,10 +39,12 @@ function Login() {
 
           <Link
             to={routes.register}
-            className="hover:underline hover:text-primary"
+            className="hover:underline text-on-background hover:text-primary"
           >
-            Don't have an account?{" "}
-            <span className="text-primary">Register now</span>
+            <p className="">
+              Don't have an account?{" "}
+              <span className="text-primary">Register now</span>
+            </p>
           </Link>
         </div>
       </form>

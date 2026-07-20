@@ -34,7 +34,7 @@ function Register() {
 
           <Link
             to={routes.login}
-            className="hover:underline hover:text-primary"
+            className="hover:underline text-on-background hover:text-primary"
           >
             Already have an account? <span className="text-primary">Login</span>
           </Link>

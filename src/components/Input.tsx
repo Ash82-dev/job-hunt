@@ -17,11 +17,12 @@ function Input({ id, label, type, ...props }: InputProps) {
 
   return (
     <div className="space-x-2 flex flex-col gap-1">
-      <label className="text-start" htmlFor={id}>
+      <label className="text-start text-on-background" htmlFor={id}>
         {label}
       </label>
       <div
         className="
+          text-on-background
           flex items-center
           min-h-10
           px-3
