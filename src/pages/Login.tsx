@@ -14,7 +14,7 @@ function Login() {
         onSubmit={(event) => handleSubmit(event)}
         className="flex flex-col gap-15 items-center"
       >
-        <h1 className="text-3xl text-primary font-semibold">
+        <h1 className="text-2xl sm:text-3xl text-primary font-semibold">
           Welcome back to Job Hunt
         </h1>
 
