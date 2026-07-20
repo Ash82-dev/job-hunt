@@ -1,18 +1,33 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai";
 
 type ButtonProps = {
   variant?: "primary" | "error";
+  isLoading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
 const styles = {
-  base: "w-full hover:brightness-90 rounded-sm py-2 cursor-pointer",
+  base: "w-full hover:brightness-90 rounded-sm min-h-10 cursor-pointer flex items-center justify-center",
   primary: " bg-primary text-on-primary",
   error: " bg-tertiary text-on-tertiary",
 };
 
-function Button({ variant = "primary", children }: ButtonProps) {
+function Button({
+  variant = "primary",
+  isLoading = false,
+  children,
+  ...props
+}: ButtonProps) {
   const className = styles.base + styles[variant];
-  return <button className={className}>{children}</button>;
+  return (
+    <button
+      className={className}
+      disabled={isLoading || props.disabled}
+      {...props}
+    >
+      {isLoading ? <Spinner className="animate-spin" size={20} /> : children}
+    </button>
+  );
 }
 
 export default Button;
