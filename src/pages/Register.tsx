@@ -27,12 +27,6 @@ function Register() {
             placeholder="Your password"
             type="password"
           />
-          <Link
-            to={routes.forgetPassword}
-            className="hover:underline hover:text-primary"
-          >
-            Have you forgot your Password?
-          </Link>
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
@@ -42,7 +36,7 @@ function Register() {
             to={routes.login}
             className="hover:underline hover:text-primary"
           >
-            Already have an account? Login
+            Already have an account? <span className="text-primary">Login</span>
           </Link>
         </div>
       </form>
