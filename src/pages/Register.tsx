@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { routes } from "../router/routes";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import InputPassword from "../components/InputPassword";
 
 function Register() {
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
@@ -21,11 +22,10 @@ function Register() {
 
         <div className="w-full space-y-4">
           <Input id="email" label="Email" placeholder="Your email" />
-          <Input
+          <InputPassword
             id="password"
             label="Password"
             placeholder="Your password"
-            type="password"
           />
         </div>
 

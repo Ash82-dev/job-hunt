@@ -1,27 +1,29 @@
-import { useState, type ComponentPropsWithoutRef } from "react";
-import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 type InputProps = {
   id: string;
-  label: string;
+  label?: string;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
 } & ComponentPropsWithoutRef<"input">;
 
-function Input({ id, label, type, ...props }: InputProps) {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const inputType =
-    type === "password" ? (isVisible ? "text" : "password") : type;
-
-  function handleToggle() {
-    setIsVisible((v) => !v);
-  }
-
+function Input({
+  id,
+  className,
+  label,
+  leadingIcon = null,
+  trailingIcon = null,
+  ...props
+}: InputProps) {
   return (
-    <div className="space-x-2 flex flex-col gap-1">
-      <label className="text-start text-on-background" htmlFor={id}>
-        {label}
-      </label>
+    <div className={`flex flex-col w-full ${label ? "gap-1" : ""}`}>
+      {label && (
+        <label className="text-start text-on-background" htmlFor={id}>
+          {label}
+        </label>
+      )}
       <div
-        className="
+        className={`
           text-on-background
           flex items-center
           min-h-10
@@ -29,29 +31,21 @@ function Input({ id, label, type, ...props }: InputProps) {
           border border-outline
           rounded-xs
           focus-within:border-primary
-        "
+          ${leadingIcon || trailingIcon ? "gap-2" : ""}
+        `}
       >
+        {leadingIcon}
+
         <input
           {...props}
-          type={inputType}
           name={id}
-          className="
-            flex-1
-            bg-transparent
-            outline-none
-            placeholder:text-on-surface-variant
-          "
+          className={
+            className +
+            " flex-1 bg-transparent outline-none placeholder:text-on-surface-variant"
+          }
         />
-        {type === "password" && (
-          <button onClick={handleToggle}>
-            {inputType === "text" && (
-              <LuEye className="text-primary cursor-pointer" size={20} />
-            )}
-            {inputType === "password" && (
-              <LuEyeClosed className="text-primary cursor-pointer" size={20} />
-            )}
-          </button>
-        )}
+
+        {trailingIcon}
       </div>
     </div>
   );
