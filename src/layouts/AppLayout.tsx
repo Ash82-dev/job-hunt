@@ -6,7 +6,7 @@ function AppLayout() {
     <div className="h-screen w-screen bg-surface flex flex-col">
       <AppHeader />
 
-      <main className="grow">
+      <main className="grow px-4 py-6">
         <Outlet />
       </main>
     </div>
