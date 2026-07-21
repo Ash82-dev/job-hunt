@@ -7,7 +7,7 @@ type ButtonProps = {
 } & ComponentPropsWithoutRef<"button">;
 
 const styles = {
-  base: "w-full hover:brightness-70 rounded-sm min-h-10 cursor-pointer flex items-center justify-center",
+  base: " w-full hover:brightness-70 rounded-sm min-h-10 cursor-pointer flex items-center justify-center",
   primary: " bg-primary text-on-primary",
   error: " bg-tertiary text-on-tertiary",
 };
@@ -16,12 +16,14 @@ function Button({
   variant = "primary",
   isLoading = false,
   children,
+  className,
   ...props
 }: ButtonProps) {
-  const className = styles.base + styles[variant];
+  const buttonStyles = className + styles.base + styles[variant];
+
   return (
     <button
-      className={className}
+      className={buttonStyles}
       disabled={isLoading || props.disabled}
       {...props}
     >
