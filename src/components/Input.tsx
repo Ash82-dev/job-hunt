@@ -29,7 +29,7 @@ function Input({
           min-h-10
           px-3
           border border-outline
-          rounded-xs
+          rounded-sm
           focus-within:border-primary
           ${leadingIcon || trailingIcon ? "gap-2" : ""}
         `}

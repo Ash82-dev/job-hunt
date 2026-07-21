@@ -2,24 +2,31 @@ import type { ComponentPropsWithoutRef } from "react";
 import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai";
 
 type ButtonProps = {
-  variant?: "primary" | "error";
+  variant?: "primary" | "small" | "error";
+  size?: "base" | "small";
   isLoading?: boolean;
 } & ComponentPropsWithoutRef<"button">;
 
 const styles = {
-  base: " w-full hover:brightness-70 rounded-sm min-h-10 cursor-pointer flex items-center justify-center",
-  primary: " bg-primary text-on-primary",
-  error: " bg-tertiary text-on-tertiary",
+  base: "hover:brightness-70 rounded-sm cursor-pointer flex items-center justify-center",
+  primary: "bg-primary text-on-primary",
+  error: "bg-tertiary text-on-tertiary",
+};
+
+const sizeStyles = {
+  base: "min-h-10 w-full",
+  small: "w-fit",
 };
 
 function Button({
   variant = "primary",
+  size = "base",
   isLoading = false,
   children,
   className,
   ...props
 }: ButtonProps) {
-  const buttonStyles = className + styles.base + styles[variant];
+  const buttonStyles = `${styles.base} ${sizeStyles[size]} ${styles[variant]} ${className}`;
 
   return (
     <button
