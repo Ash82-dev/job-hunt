@@ -1,15 +1,20 @@
 import { Outlet } from "react-router";
 import AppHeader from "@/components/AppHeader";
+import AppSideBar from "@/components/AppSideBar";
 
 function AppLayout() {
   return (
-    <div className="h-screen w-screen bg-surface flex flex-col">
+    <main className="flex h-dvh flex-col bg-surface">
       <AppHeader />
 
-      <main className="grow px-4 py-6">
-        <Outlet />
-      </main>
-    </div>
+      <div className="flex min-h-0 flex-1">
+        <AppSideBar />
+
+        <div className="min-w-0 flex-1 overflow-auto">
+          <Outlet />
+        </div>
+      </div>
+    </main>
   );
 }
 

@@ -20,14 +20,14 @@ function SettingsForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <main>
+      <section>
         <Select
           id="theme"
           label="Theme"
           options={themeOptions}
           {...register("theme")}
         />
-      </main>
+      </section>
       <footer className="w-1/4 ml-auto">
         <Button>Confirm</Button>
       </footer>

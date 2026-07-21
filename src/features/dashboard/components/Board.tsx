@@ -1,9 +1,10 @@
+import type { ApplicationStatus } from "../types/dashboard.types";
 import ApplicationBox from "./ApplicationBox";
 import ApplicationsCount from "./ApplicationsCount";
 
 type BoardProps = {
   title: string;
-  status: "applied" | "viewed" | "interview" | "rejected";
+  status: ApplicationStatus;
 };
 
 const borerStyles = {
