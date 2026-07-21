@@ -3,16 +3,27 @@ import { routes } from "../router/routes";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import InputPassword from "../components/InputPassword";
+import { useForm } from "react-hook-form";
+import { loginSchema, type LoginFormData } from "@/schema/auth/auth.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function Login() {
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  function onSubmit(data: LoginFormData) {
+    // console.log(data);
   }
 
   return (
     <div className="w-full">
       <form
-        onSubmit={(event) => handleSubmit(event)}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-15 items-center"
       >
         <h1 className="text-2xl sm:text-3xl text-primary font-semibold">
@@ -20,11 +31,19 @@ function Login() {
         </h1>
 
         <div className="w-full space-y-4">
-          <Input id="email" label="Email" placeholder="Your email" />
+          <Input
+            id="email"
+            label="Email"
+            placeholder="Your email"
+            error={errors.email?.message}
+            {...register("email")}
+          />
           <InputPassword
             id="password"
             label="Password"
             placeholder="Your password"
+            error={errors.password?.message}
+            {...register("password")}
           />
           <Link
             to={routes.forgetPassword}

@@ -5,6 +5,7 @@ type InputProps = {
   label?: string;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
+  error?: string;
 } & ComponentPropsWithoutRef<"input">;
 
 function Input({
@@ -13,6 +14,7 @@ function Input({
   label,
   leadingIcon = null,
   trailingIcon = null,
+  error = null,
   ...props
 }: InputProps) {
   return (
@@ -47,6 +49,10 @@ function Input({
 
         {trailingIcon}
       </div>
+
+      {error && (
+        <p className="mt-1 text-sm text-error animate-slide-down">{error}</p>
+      )}
     </div>
   );
 }

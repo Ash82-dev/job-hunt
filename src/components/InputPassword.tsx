@@ -5,9 +5,16 @@ import { LuEye, LuEyeClosed } from "react-icons/lu";
 type InputPasswordProps = {
   id: string;
   label?: string;
+  error?: string;
 } & ComponentPropsWithoutRef<"input">;
 
-function InputPassword({ id, label, className, ...props }: InputPasswordProps) {
+function InputPassword({
+  id,
+  label,
+  error,
+  className,
+  ...props
+}: InputPasswordProps) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const inputType = isVisible ? "text" : "password";
 
@@ -16,23 +23,26 @@ function InputPassword({ id, label, className, ...props }: InputPasswordProps) {
   }
 
   return (
-    <Input
-      id={id}
-      type={inputType}
-      label={label}
-      trailingIcon={
-        <button onClick={handleToggle}>
-          {inputType === "text" && (
-            <LuEyeClosed className="text-primary cursor-pointer" size={20} />
-          )}
-          {inputType === "password" && (
-            <LuEye className="text-primary cursor-pointer" size={20} />
-          )}
-        </button>
-      }
-      {...props}
-      className={className}
-    />
+    <>
+      <Input
+        id={id}
+        type={inputType}
+        label={label}
+        trailingIcon={
+          <button onClick={handleToggle}>
+            {inputType === "text" && (
+              <LuEyeClosed className="text-primary cursor-pointer" size={20} />
+            )}
+            {inputType === "password" && (
+              <LuEye className="text-primary cursor-pointer" size={20} />
+            )}
+          </button>
+        }
+        {...props}
+        className={className}
+        error={error}
+      />
+    </>
   );
 }
 
