@@ -1,11 +1,11 @@
-import type { ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 type TextareaProps = {
   id: string;
   label: string;
-} & ComponentPropsWithRef<"textarea">;
+} & ComponentPropsWithoutRef<"textarea">;
 
-function Textarea({ id, label, className }: TextareaProps) {
+function Textarea({ id, label, className, ...props }: TextareaProps) {
   return (
     <div
       className={`flex flex-col w-full ${label ? "gap-1" : ""} ${className} `}
@@ -19,6 +19,7 @@ function Textarea({ id, label, className }: TextareaProps) {
       <textarea
         id={id}
         className="rounded-sm p-2 text-on-surface border border-outline outline-none focus:border-primary min-h-20 resize-none"
+        {...props}
       />
     </div>
   );

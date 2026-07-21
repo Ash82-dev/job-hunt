@@ -1,9 +1,9 @@
 import type { SelectOption } from "@/components/Select";
 
 export const offerLevels: SelectOption[] = [
-  { label: "junior", value: "Junior" },
-  { label: "mid", value: "Mid" },
-  { label: "senior", value: "Senior" },
+  { value: "junior", label: "Junior" },
+  { value: "mid", label: "Mid" },
+  { value: "senior", label: "Senior" },
 ];
 
 export const workModes: SelectOption[] = [
