@@ -1,9 +1,5 @@
 import { supabase } from "@/services/supabase";
-
-type AuthParams = {
-  email: string;
-  password: string;
-};
+import type { AuthParams } from "../types";
 
 export async function registerUser({ email, password }: AuthParams) {
   const { data, error } = await supabase.auth.signUp({
@@ -12,7 +8,7 @@ export async function registerUser({ email, password }: AuthParams) {
   });
 
   if (error) {
-    throw new Error("Registering user failed!");
+    throw new Error(error?.message);
   }
 
   return data;
@@ -25,8 +21,19 @@ export async function loginUser({ email, password }: AuthParams) {
   });
 
   if (error) {
-    throw new Error("Logging in user failed!");
+    throw new Error(error?.message);
   }
 
   return data;
+}
+
+export async function getCurrentUser() {
+  const { data: session } = await supabase.auth.getSession();
+  if (!session.session) return null;
+
+  const { data: user, error } = await supabase.auth.getUser();
+
+  if (error) throw new Error(error?.message);
+
+  return user?.user;
 }

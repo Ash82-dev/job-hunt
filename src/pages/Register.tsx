@@ -1,17 +1,20 @@
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { routes } from "../router/routes";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import InputPassword from "../components/InputPassword";
-import { useForm } from "react-hook-form";
 import {
   registerSchema,
   type RegisterFormData,
 } from "@/schema/auth/auth.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRegister } from "@/features/auth/hooks/useRegister";
 
 function Register() {
+  const { signUp, isLoading } = useRegister();
+
   const {
     register,
     handleSubmit,
@@ -21,7 +24,7 @@ function Register() {
   });
 
   function onSubmit(data: RegisterFormData) {
-    // registerUser(data);
+    signUp(data);
   }
 
   return (
@@ -40,19 +43,22 @@ function Register() {
             label="Email"
             placeholder="Your email"
             error={errors.email?.message}
+            disabled={isLoading}
             {...register("email")}
           />
+
           <InputPassword
             id="password"
             label="Password"
             placeholder="Your password"
             error={errors.password?.message}
+            disabled={isLoading}
             {...register("password")}
           />
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
-          <Button>Register</Button>
+          <Button isLoading={isLoading}>Register</Button>
 
           <Link
             to={routes.login}

@@ -1,9 +1,16 @@
 import { Navigate, Outlet } from "react-router";
+
+import { useUser } from "@/hooks/useUser";
 import { routes } from "./routes";
 
 function ProtectedRoute() {
-  // return <Navigate to={routes.register} replace />;
-  return <Outlet />;
+  const { isAuthenticated, isLoading } = useUser();
+
+  if (!isAuthenticated && !isLoading) return <Navigate to={routes.login} />;
+
+  if (isLoading) return <p>Loading</p>;
+
+  if (isAuthenticated) return <Outlet />;
 }
 
 export default ProtectedRoute;

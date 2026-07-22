@@ -1,13 +1,17 @@
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { routes } from "../router/routes";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import InputPassword from "../components/InputPassword";
-import { useForm } from "react-hook-form";
 import { loginSchema, type LoginFormData } from "@/schema/auth/auth.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useLogin } from "@/features/auth/hooks/useLogin";
 
 function Login() {
+  const { signIn, isLoading } = useLogin();
+
   const {
     register,
     handleSubmit,
@@ -17,7 +21,7 @@ function Login() {
   });
 
   function onSubmit(data: LoginFormData) {
-    // console.log(data);
+    signIn(data);
   }
 
   return (
@@ -35,16 +39,22 @@ function Login() {
             id="email"
             label="Email"
             placeholder="Your email"
+            // defaultValue="amir@gmail.com"
             error={errors.email?.message}
+            disabled={isLoading}
             {...register("email")}
           />
+
           <InputPassword
             id="password"
             label="Password"
             placeholder="Your password"
+            // defaultValue="12312312"
             error={errors.password?.message}
+            disabled={isLoading}
             {...register("password")}
           />
+
           <Link
             to={routes.forgetPassword}
             className="hover:underline hover:text-primary text-on-background"
@@ -54,7 +64,7 @@ function Login() {
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
-          <Button>Login</Button>
+          <Button isLoading={isLoading}>Login</Button>
 
           <Link
             to={routes.register}
