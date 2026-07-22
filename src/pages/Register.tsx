@@ -21,7 +21,7 @@ function Register() {
   });
 
   function onSubmit(data: RegisterFormData) {
-    // console.log(data);
+    // registerUser(data);
   }
 
   return (
