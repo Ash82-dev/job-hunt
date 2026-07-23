@@ -21,10 +21,14 @@ function ApplicationDetailForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
+    watch,
   } = useForm<ApplicationFormData>({
     resolver: zodResolver(applicationSchema),
+    mode: "onChange",
   });
+
+  const status = watch("status");
 
   function onSubmit(data: ApplicationFormData) {
     // console.log(data);
@@ -35,7 +39,7 @@ function ApplicationDetailForm() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <section className="flex flex-col gap-8 px-4 py-6">
+    <section className="flex flex-col gap-8 px-4">
       <ApplicationHeader title={application.company} />
 
       <form
@@ -48,15 +52,6 @@ function ApplicationDetailForm() {
           error={errors.company?.message}
           defaultValue={application.company}
           {...register("company")}
-        />
-
-        <Input
-          id="salary"
-          label="Salary"
-          type="number"
-          error={errors.salary?.message}
-          defaultValue={application.salary}
-          {...register("salary")}
         />
 
         <Select
@@ -75,12 +70,13 @@ function ApplicationDetailForm() {
           {...register("position")}
         />
 
-        <Select
-          id="workMode"
-          label="Work mode"
-          options={workModes}
-          defaultValue={application.workMode}
-          {...register("workMode")}
+        <Input
+          id="salary"
+          label="Salary"
+          type="number"
+          error={errors.salary?.message}
+          defaultValue={application.salary}
+          {...register("salary")}
         />
 
         <Select
@@ -89,6 +85,38 @@ function ApplicationDetailForm() {
           options={offerLevels}
           defaultValue={application.level}
           {...register("level")}
+        />
+
+        <Select
+          id="workMode"
+          label="Work mode"
+          options={workModes}
+          defaultValue={application.workMode}
+          {...register("workMode")}
+        />
+
+        <Input
+          id="applicationLink"
+          label="Application link"
+          error={errors.applicationLink?.message}
+          defaultValue={application.applicationLink}
+          {...register("applicationLink")}
+        />
+
+        <Input
+          id="location"
+          label="Location"
+          error={errors.location?.message}
+          defaultValue={application.location}
+          {...register("location")}
+        />
+
+        <Input
+          id="resumeVersion"
+          label="Resume Version"
+          error={errors.resumeVersion?.message}
+          defaultValue={application.resumeVersion}
+          {...register("resumeVersion")}
         />
 
         <Input
@@ -101,27 +129,23 @@ function ApplicationDetailForm() {
         />
 
         <Input
-          id="applicationLink"
-          label="Application link"
-          error={errors.applicationLink?.message}
-          defaultValue={application.applicationLink}
-          {...register("applicationLink")}
+          id="interviewDate"
+          label="Interview Date"
+          type="date"
+          error={errors.interviewDate?.message}
+          defaultValue={application.interviewDate}
+          disabled={status !== "interview"}
+          {...register("interviewDate")}
         />
 
         <Input
-          id="resumeVersion"
-          label="Resume Version"
-          error={errors.resumeVersion?.message}
-          defaultValue={application.resumeVersion}
-          {...register("resumeVersion")}
-        />
-
-        <Input
-          id="location"
-          label="Location"
-          error={errors.location?.message}
-          defaultValue={application.location}
-          {...register("location")}
+          id="rejectedDate"
+          label="Rejected Date"
+          type="date"
+          error={errors.rejectedDate?.message}
+          defaultValue={application.rejectedDate}
+          disabled={status !== "rejected"}
+          {...register("rejectedDate")}
         />
 
         <Textarea
@@ -131,7 +155,13 @@ function ApplicationDetailForm() {
           {...register("notes")}
         />
 
-        <Button className="sm:col-span-2 mt-6">Confirm</Button>
+        <Button
+          className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed`}
+          isLoading={isLoading}
+          disabled={!isValid}
+        >
+          Confirm
+        </Button>
       </form>
     </section>
   );

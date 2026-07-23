@@ -8,6 +8,8 @@ export const applicationSchema = z.object({
   workMode: z.string(),
   level: z.string().nonempty("This field is required"),
   appliedDate: z.string().nonempty("This field is required"),
+  interviewDate: z.string(),
+  rejectedDate: z.string(),
   applicationLink: z.string(),
   resumeVersion: z.string(),
   location: z.string(),

@@ -34,6 +34,7 @@ function Input({
           rounded-sm
           focus-within:border-primary
           ${leadingIcon || trailingIcon ? "gap-2" : ""}
+          ${props.disabled ? "bg-outline/40 text-outline" : ""}
         `}
       >
         {leadingIcon}
@@ -43,7 +44,7 @@ function Input({
           name={id}
           className={
             className +
-            " flex-1 bg-transparent outline-none placeholder:text-on-surface-variant"
+            " flex-1 bg-transparent outline-none placeholder:text-on-surface-variant disabled:cursor-not-allowed"
           }
         />
 

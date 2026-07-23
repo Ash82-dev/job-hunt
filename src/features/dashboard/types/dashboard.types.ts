@@ -13,6 +13,8 @@ export type ApplicationResponse = {
   workMode: WorkMode | null;
   level: Level | null;
   appliedDate: string | null;
+  interviewDate: string | null;
+  rejectedDate: string | null;
   applicationLink: string | null;
   resumeVersion: string | null;
   location: string | null;

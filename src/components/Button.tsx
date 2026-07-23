@@ -8,7 +8,7 @@ type ButtonProps = {
 } & ComponentPropsWithoutRef<"button">;
 
 const styles = {
-  base: "hover:brightness-70 rounded-sm cursor-pointer flex items-center justify-center",
+  base: "enabled:hover:brightness-70 disabled:brightness-50 rounded-sm cursor-pointer flex items-center justify-center",
   primary: "bg-primary text-on-primary",
   error: "bg-tertiary text-on-tertiary",
 };
@@ -24,15 +24,16 @@ function Button({
   isLoading = false,
   children,
   className,
+  disabled,
   ...props
 }: ButtonProps) {
   const buttonStyles = `${styles.base} ${sizeStyles[size]} ${styles[variant]} ${className}`;
 
   return (
     <button
-      className={buttonStyles}
-      disabled={isLoading || props.disabled}
       {...props}
+      className={buttonStyles}
+      disabled={isLoading || disabled}
     >
       {isLoading ? <Spinner className="animate-spin" size={20} /> : children}
     </button>
