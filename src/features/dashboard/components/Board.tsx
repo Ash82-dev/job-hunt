@@ -1,10 +1,14 @@
-import type { ApplicationStatus } from "../types/dashboard.types";
-import ApplicationBox from "./ApplicationBox";
+import type {
+  ApplicationResponse,
+  ApplicationStatus,
+} from "../types/dashboard.types";
+import ApplicationItem from "./ApplicationItem";
 import ApplicationsCount from "./ApplicationsCount";
 
 type BoardProps = {
   title: string;
   status: ApplicationStatus;
+  applications: ApplicationResponse[];
 };
 
 const borerStyles = {
@@ -14,7 +18,7 @@ const borerStyles = {
   rejected: "border-status-rejected",
 };
 
-function Board({ title, status }: BoardProps) {
+function Board({ title, status, applications }: BoardProps) {
   return (
     <div
       className={`bg-surface-variant min-w-90 grow h-full rounded-xl p-4 border-t-4 ${borerStyles[status]}`}
@@ -23,10 +27,14 @@ function Board({ title, status }: BoardProps) {
         className={`flex items-center justify-between text-on-surface-variant pb-2 border-b-2 border-outline`}
       >
         <h2 className="font-semibold">{title}</h2>
-        <ApplicationsCount />
+        <ApplicationsCount count={applications.length} />
       </header>
 
-      <ApplicationBox />
+      <ul className="mt-4 flex flex-col gap-4">
+        {applications.map((application) => (
+          <ApplicationItem key={application.id} application={application} />
+        ))}
+      </ul>
     </div>
   );
 }

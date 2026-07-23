@@ -1,4 +1,5 @@
 import Board from "@/features/dashboard/components/Board";
+import { useApplicationSummary } from "@/features/dashboard/hooks/useApplication";
 import type { ApplicationStatus } from "@/features/dashboard/types/dashboard.types";
 
 const columns = [
@@ -9,6 +10,12 @@ const columns = [
 ];
 
 function Dashboard() {
+  const { applicationsSummary, isLoading, error } = useApplicationSummary();
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (error) return <p>{error.message}</p>;
+
   return (
     <div className="flex items-center h-full gap-4 px-4 pt-6 overflow-x-scroll">
       {columns.map((column) => (
@@ -16,6 +23,9 @@ function Dashboard() {
           key={column.status}
           title={column.title}
           status={column.status as ApplicationStatus}
+          applications={applicationsSummary.filter(
+            (app) => app.status === column.status,
+          )}
         />
       ))}
     </div>
