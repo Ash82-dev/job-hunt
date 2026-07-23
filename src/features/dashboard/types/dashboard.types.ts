@@ -8,7 +8,7 @@ export type ApplicationResponse = {
   id: string | null;
   company: string | null;
   status: ApplicationStatus | null;
-  salary: number | null;
+  salary: string | null;
   position: string | null;
   workMode: WorkMode | null;
   level: Level | null;

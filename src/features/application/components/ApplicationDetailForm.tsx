@@ -13,10 +13,14 @@ import {
 import { useApplication } from "../hooks/useApplication";
 import { useParams } from "react-router";
 import ApplicationHeader from "./ApplicationHeader";
+import { useUpdateApplication } from "../hooks/useUpdateApplication";
+import type { ApplicationResponse } from "@/features/dashboard/types/dashboard.types";
 
 function ApplicationDetailForm() {
   const { id } = useParams();
   const { application, isLoading, error } = useApplication(id);
+
+  const { updateApplication, isLoading: isUpdating } = useUpdateApplication();
 
   const {
     register,
@@ -28,10 +32,11 @@ function ApplicationDetailForm() {
     mode: "onChange",
   });
 
+  // eslint-disable-next-line
   const status = watch("status");
 
   function onSubmit(data: ApplicationFormData) {
-    // console.log(data);
+    updateApplication({ id, ...data } as ApplicationResponse);
   }
 
   if (isLoading) return <p>Loading...</p>;
@@ -157,7 +162,7 @@ function ApplicationDetailForm() {
 
         <Button
           className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed`}
-          isLoading={isLoading}
+          isLoading={isLoading || isUpdating}
           disabled={!isValid}
         >
           Confirm

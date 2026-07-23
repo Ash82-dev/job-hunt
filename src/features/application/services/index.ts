@@ -14,3 +14,14 @@ export async function getApplicationById(
 
   return application;
 }
+
+export async function updateApplication(newApplication: ApplicationResponse) {
+  const { id, ...changes } = newApplication;
+
+  const { error } = await supabase
+    .from("applications")
+    .update(changes)
+    .eq("id", id);
+
+  if (error) throw new Error(error.message);
+}
