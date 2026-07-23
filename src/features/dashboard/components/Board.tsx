@@ -1,14 +1,14 @@
 import type {
-  ApplicationResponse,
   ApplicationStatus,
-} from "../types/dashboard.types";
+  ApplicationSummaryResponse,
+} from "../../application/types/application.types";
 import ApplicationItem from "./ApplicationItem";
 import ApplicationsCount from "./ApplicationsCount";
 
 type BoardProps = {
   title: string;
   status: ApplicationStatus;
-  applications: ApplicationResponse[];
+  applications: ApplicationSummaryResponse[];
 };
 
 const borerStyles = {

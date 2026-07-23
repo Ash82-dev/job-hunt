@@ -14,8 +14,8 @@ const styles = {
 };
 
 const sizeStyles = {
-  base: "min-h-10 w-full",
-  small: "w-fit",
+  base: "min-h-10",
+  small: "w-fit h-fit",
 };
 
 function Button({

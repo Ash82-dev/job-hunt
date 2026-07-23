@@ -1,5 +1,8 @@
 import { supabase } from "@/services/supabase";
-import type { ApplicationResponse } from "@/features/dashboard/types/dashboard.types";
+import type {
+  Application,
+  ApplicationResponse,
+} from "@/features/application/types/application.types";
 
 export async function getApplicationById(
   id: string,
@@ -15,7 +18,7 @@ export async function getApplicationById(
   return application;
 }
 
-export async function updateApplication(newApplication: ApplicationResponse) {
+export async function updateApplication(newApplication: Application) {
   const { id, ...changes } = newApplication;
 
   const { error } = await supabase

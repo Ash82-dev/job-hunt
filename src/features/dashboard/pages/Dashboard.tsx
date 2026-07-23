@@ -1,6 +1,6 @@
 import Board from "@/features/dashboard/components/Board";
 import { useApplicationSummary } from "@/features/dashboard/hooks/useApplicationSummary";
-import type { ApplicationStatus } from "@/features/dashboard/types/dashboard.types";
+import type { ApplicationStatus } from "@/features/application/types/application.types";
 
 const columns = [
   { title: "Applied", status: "applied" },

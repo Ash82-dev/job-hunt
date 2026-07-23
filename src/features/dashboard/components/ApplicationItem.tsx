@@ -1,12 +1,12 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import type { ApplicationResponse } from "../types/dashboard.types";
+import type { ApplicationSummaryResponse } from "../../application/types/application.types";
 import { useNavigate } from "react-router";
 import { routes } from "@/router/routes";
 
 type ApplicationItemProps = {
   mode?: "creating" | "item";
-  application: ApplicationResponse;
+  application: ApplicationSummaryResponse;
 };
 
 function ApplicationItem({ mode = "item", application }: ApplicationItemProps) {

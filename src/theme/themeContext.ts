@@ -1,7 +1,6 @@
-import type { SelectOption } from "@/components/Select";
 import { createContext } from "react";
-
-export type Theme = "light" | "dark" | "system";
+import type { SelectOption } from "@/components/Select";
+import type { Theme } from "@/types";
 
 export const themeOptions: SelectOption[] = [
   {

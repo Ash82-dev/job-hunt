@@ -1,25 +1,31 @@
+import { useParams } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import ApplicationHeader from "./ApplicationHeader";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
-import { applicationStatus, offerLevels, workModes } from "../utils/options";
+
 import {
   applicationSchema,
   type ApplicationFormData,
-} from "@/schema/application/application.schema";
+} from "@/features/application/schema/application.schema";
+import type { Application } from "@/features/application/types/application.types";
+
 import { useApplication } from "../hooks/useApplication";
-import { useParams } from "react-router";
-import ApplicationHeader from "./ApplicationHeader";
 import { useUpdateApplication } from "../hooks/useUpdateApplication";
-import type { ApplicationResponse } from "@/features/dashboard/types/dashboard.types";
+
+import {
+  applicationStatusesOptions,
+  applicationLevelsOptions,
+  applicationWorkModesOptions,
+} from "../utils/options";
 
 function ApplicationDetailForm() {
   const { id } = useParams();
   const { application, isLoading, error } = useApplication(id);
-
   const { updateApplication, isLoading: isUpdating } = useUpdateApplication();
 
   const {
@@ -36,7 +42,7 @@ function ApplicationDetailForm() {
   const status = watch("status");
 
   function onSubmit(data: ApplicationFormData) {
-    updateApplication({ id, ...data } as ApplicationResponse);
+    updateApplication({ id, ...data } as Application);
   }
 
   if (isLoading) return <p>Loading...</p>;
@@ -62,7 +68,7 @@ function ApplicationDetailForm() {
         <Select
           id="status"
           label="Status"
-          options={applicationStatus}
+          options={applicationStatusesOptions}
           defaultValue={application.status}
           {...register("status")}
         />
@@ -87,7 +93,7 @@ function ApplicationDetailForm() {
         <Select
           id="level"
           label="Level"
-          options={offerLevels}
+          options={applicationLevelsOptions}
           defaultValue={application.level}
           {...register("level")}
         />
@@ -95,7 +101,7 @@ function ApplicationDetailForm() {
         <Select
           id="workMode"
           label="Work mode"
-          options={workModes}
+          options={applicationWorkModesOptions}
           defaultValue={application.workMode}
           {...register("workMode")}
         />

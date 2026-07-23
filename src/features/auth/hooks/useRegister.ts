@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 import { registerUser } from "../services";
-import type { AuthParams } from "../types";
+import type { AuthParams } from "../types/auth.types";
 import { routes } from "@/router/routes";
 
 export function useRegister() {

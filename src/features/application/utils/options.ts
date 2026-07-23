@@ -1,18 +1,18 @@
 import type { SelectOption } from "@/components/Select";
 
-export const offerLevels: SelectOption[] = [
+export const applicationLevelsOptions: SelectOption[] = [
   { value: "junior", label: "Junior" },
   { value: "mid", label: "Mid" },
   { value: "senior", label: "Senior" },
 ];
 
-export const workModes: SelectOption[] = [
+export const applicationWorkModesOptions: SelectOption[] = [
   { value: "on-site", label: "On-Site" },
   { value: "remote", label: "Remote" },
   { value: "hybrid", label: "Hybrid" },
 ];
 
-export const applicationStatus: SelectOption[] = [
+export const applicationStatusesOptions: SelectOption[] = [
   { label: "Applied", value: "applied" },
   { label: "Interview", value: "interview" },
   { label: "Rejected", value: "rejected" },

@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { updateApplication as update } from "../services";
-import type { ApplicationResponse } from "@/features/dashboard/types/dashboard.types";
+import type { Application } from "@/features/application/types/application.types";
 import toast from "react-hot-toast";
 
 export function useUpdateApplication() {
   const { mutate: updateApplication, isPending } = useMutation({
-    mutationFn: (newApplication: ApplicationResponse) => update(newApplication),
+    mutationFn: (newApplication: Application) => update(newApplication),
     onSuccess: () => {
       toast.success("Application successfully updated!");
     },

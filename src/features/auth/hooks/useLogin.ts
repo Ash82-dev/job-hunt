@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
-import type { AuthParams } from "../types";
+import type { AuthParams } from "../types/auth.types";
 import { loginUser } from "../services";
 import { routes } from "@/router/routes";
 

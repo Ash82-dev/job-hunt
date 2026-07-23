@@ -6,7 +6,10 @@ import { routes } from "@/router/routes";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import InputPassword from "@/components/InputPassword";
-import { loginSchema, type LoginFormData } from "@/schema/auth/auth.schema";
+import {
+  loginSchema,
+  type LoginFormData,
+} from "@/features/auth/schema/auth.schema";
 import { useLogin } from "@/features/auth/hooks/useLogin";
 import AuthHeader from "../components/AuthHeader";
 
@@ -61,13 +64,15 @@ function Login() {
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
-          <Button isLoading={isLoading}>Login</Button>
+          <Button className="w-full" isLoading={isLoading}>
+            Login
+          </Button>
 
           <Link
             to={routes.register}
             className="hover:underline text-on-background hover:text-primary"
           >
-            <p className="">
+            <p>
               Don't have an account?{" "}
               <span className="text-primary">Register now</span>
             </p>

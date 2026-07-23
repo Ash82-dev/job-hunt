@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   registerSchema,
   type RegisterFormData,
-} from "@/schema/auth/auth.schema";
+} from "@/features/auth/schema/auth.schema";
 import { useRegister } from "@/features/auth/hooks/useRegister";
 import Input from "@/components/Input";
 import InputPassword from "@/components/InputPassword";
@@ -32,11 +32,11 @@ function Register() {
     <div className="w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-15 items-center"
+        className="flex flex-col gap-15 items-center w-full"
       >
         <AuthHeader title="Welcome to Job Hunt" />
 
-        <div className="w-full space-y-4">
+        <div className="space-y-4 w-full">
           <Input
             id="email"
             label="Email"
@@ -57,7 +57,9 @@ function Register() {
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
-          <Button isLoading={isLoading}>Register</Button>
+          <Button className="w-full" isLoading={isLoading}>
+            Register
+          </Button>
 
           <Link
             to={routes.login}

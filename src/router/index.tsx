@@ -11,9 +11,9 @@ import Login from "@/features/auth/pages/Login";
 import Register from "@/features/auth/pages/Register";
 import ForgetPassword from "@/features/auth/pages/ForgetPassword";
 
-import Dashboard from "@/pages/Dashboard";
-import ApplicationDetail from "@/pages/ApplicationDetail";
-import Settings from "@/pages/Settings";
+import Dashboard from "@/features/dashboard/pages/Dashboard";
+import ApplicationDetail from "@/features/application/pages/ApplicationDetail";
+import Settings from "@/features/settings/pages/Settings";
 import NotFound from "@/pages/NotFound";
 
 export const router = createBrowserRouter([

@@ -1,5 +1,5 @@
 import { supabase } from "@/services/supabase";
-import type { AuthParams } from "../types";
+import type { AuthParams } from "../types/auth.types";
 
 export async function registerUser({ email, password }: AuthParams) {
   const { data, error } = await supabase.auth.signUp({

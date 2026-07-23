@@ -1,12 +1,17 @@
 import z from "zod";
+import {
+  applicationLevels,
+  applicationStatuses,
+  applicationWorkModes,
+} from "../types/application.types";
 
 export const applicationSchema = z.object({
   company: z.string().nonempty("This field is required"),
   salary: z.string().nonempty("This field is required"),
   position: z.string().nonempty("This field is required"),
-  status: z.string(),
-  workMode: z.string(),
-  level: z.string().nonempty("This field is required"),
+  status: z.enum(applicationStatuses),
+  workMode: z.enum(applicationWorkModes),
+  level: z.enum(applicationLevels),
   appliedDate: z
     .string()
     .nonempty("This field is required")
