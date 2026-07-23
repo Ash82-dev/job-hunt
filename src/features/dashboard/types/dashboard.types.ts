@@ -1,4 +1,4 @@
-export type ApplicationStatus = "applied" | "viewed" | "interview" | "rejected";
+export type ApplicationStatus = "applied" | "interview" | "rejected";
 
 export type ApplicationResponse = {
   id: string | null;

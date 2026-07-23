@@ -4,7 +4,6 @@ import type { ApplicationStatus } from "@/features/dashboard/types/dashboard.typ
 
 const columns = [
   { title: "Applied", status: "applied" },
-  { title: "Viewed", status: "viewed" },
   { title: "Interview", status: "interview" },
   { title: "Rejected", status: "rejected" },
 ];
@@ -17,7 +16,7 @@ function Dashboard() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <div className="flex items-center h-full gap-4 px-4 pt-6 overflow-x-scroll">
+    <div className="flex items-center h-full gap-4 p-4 overflow-x-auto">
       {columns.map((column) => (
         <Board
           key={column.status}

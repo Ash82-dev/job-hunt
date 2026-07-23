@@ -13,7 +13,6 @@ type BoardProps = {
 
 const borerStyles = {
   applied: "border-status-applied",
-  viewed: "border-status-viewed",
   interview: "border-status-interview",
   rejected: "border-status-rejected",
 };

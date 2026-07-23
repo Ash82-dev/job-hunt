@@ -1,22 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --animate-slide-down: slide-down 200ms ease-out;
-
-  @keyframes slide-down {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-@theme {
   /* ==========================================================================
      BRAND
      ========================================================================== */
@@ -95,7 +79,6 @@
      ========================================================================== */
 
   --color-status-applied: var(--theme-status-applied);
-  --color-status-viewed: var(--theme-status-viewed);
   --color-status-interview: var(--theme-status-interview);
   --color-status-offer: var(--theme-status-offer);
   --color-status-rejected: var(--theme-status-rejected);
@@ -122,6 +105,23 @@
   --shadow-lg: 0 10px 15px rgb(15 23 42 / 0.1), 0 4px 6px rgb(15 23 42 / 0.05);
   --shadow-xl:
     0 20px 25px rgb(15 23 42 / 0.12), 0 8px 10px rgb(15 23 42 / 0.05);
+
+  /* ==========================================================================
+     ANIMATIONS
+     ========================================================================== */
+  --animate-slide-down: slide-down 200ms ease-out;
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 :root {
@@ -191,7 +191,6 @@
   /* STATUS */
 
   --theme-status-applied: #3b82f6;
-  --theme-status-viewed: #f59e0b;
   --theme-status-interview: #10b981;
   --theme-status-offer: #8b5cf6;
   --theme-status-rejected: #ef4444;
@@ -264,7 +263,6 @@
   /* STATUS */
 
   --theme-status-applied: #60a5fa;
-  --theme-status-viewed: #fbbf24;
   --theme-status-interview: #4ade80;
   --theme-status-offer: #a78bfa;
   --theme-status-rejected: #f87171;
