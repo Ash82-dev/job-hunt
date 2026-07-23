@@ -1,20 +1,20 @@
 import { createBrowserRouter } from "react-router";
 
+import { routes } from "./routes";
 import RedirectIfAuth from "./RedirectIfAuth";
 import ProtectedRoute from "./ProtectedRoute";
 
-import AuthLayout from "../layouts/AuthLayout";
-import AppLayout from "../layouts/AppLayout";
+import AuthLayout from "@/layouts/AuthLayout";
+import AppLayout from "@/layouts/AppLayout";
 
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-import ForgetPassword from "../pages/ForgetPassword";
-import Dashboard from "../pages/Dashboard";
-import ApplicationDetail from "../pages/ApplicationDetail";
-import Settings from "../pages/Settings";
-import NotFound from "../pages/NotFound";
+import Login from "@/features/auth/pages/Login";
+import Register from "@/features/auth/pages/Register";
+import ForgetPassword from "@/features/auth/pages/ForgetPassword";
 
-import { routes } from "./routes";
+import Dashboard from "@/pages/Dashboard";
+import ApplicationDetail from "@/pages/ApplicationDetail";
+import Settings from "@/pages/Settings";
+import NotFound from "@/pages/NotFound";
 
 export const router = createBrowserRouter([
   {

@@ -2,15 +2,16 @@ import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { routes } from "../router/routes";
-import Button from "../components/Button";
-import Input from "../components/Input";
-import InputPassword from "../components/InputPassword";
 import {
   registerSchema,
   type RegisterFormData,
 } from "@/schema/auth/auth.schema";
 import { useRegister } from "@/features/auth/hooks/useRegister";
+import Input from "@/components/Input";
+import InputPassword from "@/components/InputPassword";
+import Button from "@/components/Button";
+import { routes } from "@/router/routes";
+import AuthHeader from "../components/AuthHeader";
 
 function Register() {
   const { signUp, isLoading } = useRegister();
@@ -33,9 +34,7 @@ function Register() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-15 items-center"
       >
-        <h1 className="text-2xl sm:text-3xl text-primary font-semibold">
-          Welcome to Job Hunt
-        </h1>
+        <AuthHeader title="Welcome to Job Hunt" />
 
         <div className="w-full space-y-4">
           <Input

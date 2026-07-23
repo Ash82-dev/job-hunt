@@ -1,5 +1,5 @@
+import { routes } from "@/router/routes";
 import { Link } from "react-router";
-import { routes } from "../router/routes";
 
 function ForgetPassword() {
   return (
