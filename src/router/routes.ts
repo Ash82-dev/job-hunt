@@ -5,4 +5,5 @@ export const routes = {
   dashboard: "/",
   settings: "/settings",
   applicationDetail: "/application/:id",
+  createRouteApplicationDetail: (id: string) => `/application/${id}`,
 };

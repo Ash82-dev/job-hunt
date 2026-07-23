@@ -11,3 +11,9 @@ export const workModes: SelectOption[] = [
   { value: "remote", label: "Remote" },
   { value: "hybrid", label: "Hybrid" },
 ];
+
+export const applicationStatus: SelectOption[] = [
+  { label: "Applied", value: "applied" },
+  { label: "Interview", value: "interview" },
+  { label: "Rejected", value: "rejected" },
+];

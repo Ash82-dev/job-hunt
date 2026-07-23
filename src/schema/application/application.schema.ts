@@ -4,6 +4,7 @@ export const applicationSchema = z.object({
   company: z.string().nonempty("This field is required"),
   salary: z.string().nonempty("This field is required"),
   position: z.string().nonempty("This field is required"),
+  status: z.string(),
   workMode: z.string(),
   level: z.string().nonempty("This field is required"),
   appliedDate: z.string().nonempty("This field is required"),

@@ -1,5 +1,5 @@
 import Board from "@/features/dashboard/components/Board";
-import { useApplicationSummary } from "@/features/dashboard/hooks/useApplication";
+import { useApplicationSummary } from "@/features/dashboard/hooks/useApplicationSummary";
 import type { ApplicationStatus } from "@/features/dashboard/types/dashboard.types";
 
 const columns = [

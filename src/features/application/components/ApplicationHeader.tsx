@@ -1,19 +1,17 @@
-// import Button from "@/components/Button";
-import { routes } from "@/router/routes";
-import { FaArrowRight as BackIcon } from "react-icons/fa6";
 import { useNavigate } from "react-router";
-// import { MdEdit as EditIcon } from "react-icons/md";
+import { FaArrowRight as BackIcon } from "react-icons/fa6";
+import { routes } from "@/router/routes";
 
-function ApplicationHeader() {
+type ApplicationHeaderProps = {
+  title: string;
+};
+
+function ApplicationHeader({ title }: ApplicationHeaderProps) {
   const navigate = useNavigate();
 
   return (
     <header className="flex items-center justify-between">
-      <h2 className="text-2xl text-on-surface">Application title</h2>
-      {/* <Button size="small" className="flex gap-2 px-2">
-        <p>Edit</p>
-        <EditIcon />
-      </Button> */}
+      <h2 className="text-2xl text-on-surface">{title}</h2>
       <button
         className="text-on-surface cursor-pointer"
         onClick={() => navigate(routes.dashboard)}
