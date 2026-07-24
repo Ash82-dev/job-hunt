@@ -53,6 +53,7 @@ function AppSideBar({ isOpen, onClose }: AppSideBarProps) {
           flex w-70 flex-col gap-2
           bg-surface-variant px-5 py-5
           transition-transform duration-300
+          border-r-2 border-background
 
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
 
