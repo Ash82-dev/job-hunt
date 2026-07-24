@@ -7,8 +7,9 @@ export function useApplication(id: string) {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["application"],
-    queryFn: () => getApplicationById(id),
+    queryKey: ["application", id],
+    queryFn: () => getApplicationById(id!),
+    enabled: !!id,
   });
 
   return { application, isLoading, error };

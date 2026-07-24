@@ -24,7 +24,7 @@ function Board({ title, status, applications }: BoardProps) {
 
   return (
     <div
-      className={`bg-surface-variant basis-90 grow h-full rounded-xl p-4 border-t-4 ${borerStyles[status]}`}
+      className={`bg-surface-variant basis-90 min-w-90 grow h-full rounded-xl p-4 border-t-4 ${borerStyles[status]}`}
     >
       <header
         className={`flex items-center justify-between text-on-surface-variant pb-2 border-b-2 border-outline`}

@@ -10,6 +10,7 @@ import Button from "@/components/Button";
 
 import {
   applicationSchema,
+  toApplicationFormData,
   type ApplicationFormData,
 } from "@/features/application/schema/application.schema";
 import type { Application } from "@/features/application/types/application.types";
@@ -22,6 +23,7 @@ import {
   applicationLevelsOptions,
   applicationWorkModesOptions,
 } from "../utils/options";
+import { useEffect } from "react";
 
 function ApplicationDetailForm() {
   const { id } = useParams();
@@ -31,12 +33,19 @@ function ApplicationDetailForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    reset,
+    formState: { errors },
     watch,
   } = useForm<ApplicationFormData>({
     resolver: zodResolver(applicationSchema),
     mode: "onChange",
   });
+
+  useEffect(() => {
+    if (application) {
+      reset(toApplicationFormData(application));
+    }
+  }, [application, reset]);
 
   // eslint-disable-next-line
   const status = watch("status");
@@ -61,7 +70,6 @@ function ApplicationDetailForm() {
           id="company"
           label="Company"
           error={errors.company?.message}
-          defaultValue={application.company}
           {...register("company")}
         />
 
@@ -69,7 +77,6 @@ function ApplicationDetailForm() {
           id="status"
           label="Status"
           options={applicationStatusesOptions}
-          defaultValue={application.status}
           {...register("status")}
         />
 
@@ -77,7 +84,6 @@ function ApplicationDetailForm() {
           id="position"
           label="Position"
           error={errors.position?.message}
-          defaultValue={application.position}
           {...register("position")}
         />
 
@@ -86,7 +92,6 @@ function ApplicationDetailForm() {
           label="Salary"
           type="number"
           error={errors.salary?.message}
-          defaultValue={application.salary}
           {...register("salary")}
         />
 
@@ -94,7 +99,6 @@ function ApplicationDetailForm() {
           id="level"
           label="Level"
           options={applicationLevelsOptions}
-          defaultValue={application.level}
           {...register("level")}
         />
 
@@ -102,7 +106,6 @@ function ApplicationDetailForm() {
           id="workMode"
           label="Work mode"
           options={applicationWorkModesOptions}
-          defaultValue={application.workMode}
           {...register("workMode")}
         />
 
@@ -110,7 +113,6 @@ function ApplicationDetailForm() {
           id="applicationLink"
           label="Application link"
           error={errors.applicationLink?.message}
-          defaultValue={application.applicationLink}
           {...register("applicationLink")}
         />
 
@@ -118,7 +120,6 @@ function ApplicationDetailForm() {
           id="location"
           label="Location"
           error={errors.location?.message}
-          defaultValue={application.location}
           {...register("location")}
         />
 
@@ -126,7 +127,6 @@ function ApplicationDetailForm() {
           id="resumeVersion"
           label="Resume Version"
           error={errors.resumeVersion?.message}
-          defaultValue={application.resumeVersion}
           {...register("resumeVersion")}
         />
 
@@ -135,7 +135,6 @@ function ApplicationDetailForm() {
           label="Applied Date"
           type="date"
           error={errors.appliedDate?.message}
-          defaultValue={application.appliedDate}
           {...register("appliedDate")}
         />
 
@@ -144,7 +143,6 @@ function ApplicationDetailForm() {
           label="Interview Date"
           type="date"
           error={errors.interviewDate?.message}
-          defaultValue={application.interviewDate}
           disabled={status !== "interview"}
           {...register("interviewDate")}
         />
@@ -154,22 +152,15 @@ function ApplicationDetailForm() {
           label="Rejected Date"
           type="date"
           error={errors.rejectedDate?.message}
-          defaultValue={application.rejectedDate}
           disabled={status !== "rejected"}
           {...register("rejectedDate")}
         />
 
-        <Textarea
-          id="notes"
-          label="Notes"
-          defaultValue={application.notes}
-          {...register("notes")}
-        />
+        <Textarea id="notes" label="Notes" {...register("notes")} />
 
         <Button
           className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed`}
           isLoading={isLoading || isUpdating}
-          disabled={!isValid}
         >
           Confirm
         </Button>
