@@ -34,7 +34,7 @@ function Register() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-15 items-center w-full"
       >
-        <AuthHeader title="Welcome to Job Hunt" />
+        <AuthHeader />
 
         <div className="space-y-4 w-full">
           <Input

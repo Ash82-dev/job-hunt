@@ -62,7 +62,7 @@ function AppSideBar({ isOpen, onClose }: AppSideBarProps) {
         `}
       >
         <div className="mb-2 flex items-center justify-between md:hidden">
-          <Logo />
+          <Logo className="w-15" />
 
           <button
             onClick={onClose}

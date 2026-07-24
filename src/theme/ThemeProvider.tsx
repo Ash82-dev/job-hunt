@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ThemeContext, type Theme } from "./themeContext";
+import { ThemeContext } from "./themeContext";
+import type { Theme } from "@/types";
 
 type Props = {
   children: ReactNode;
@@ -9,6 +10,8 @@ export function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState<Theme>(() => {
     return (localStorage.getItem("theme") as Theme) ?? "system";
   });
+
+  const resolvedTheme: Theme = theme === "dark" ? "dark" : "light";
 
   useEffect(() => {
     const root = document.documentElement;
@@ -31,7 +34,7 @@ export function ThemeProvider({ children }: Props) {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

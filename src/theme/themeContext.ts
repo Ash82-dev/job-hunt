@@ -19,6 +19,7 @@ export const themeOptions: SelectOption[] = [
 
 type ThemeContextType = {
   theme: Theme;
+  resolvedTheme: Theme;
   setTheme: (theme: Theme) => void;
 };
 

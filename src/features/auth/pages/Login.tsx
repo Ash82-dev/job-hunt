@@ -32,9 +32,9 @@ function Login() {
     <div className="w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-15 items-center"
+        className="flex flex-col gap-12 items-center"
       >
-        <AuthHeader title="Welcome back to Job Hunt" />
+        <AuthHeader />
 
         <div className="w-full space-y-4">
           <Input

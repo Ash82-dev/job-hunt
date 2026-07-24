@@ -1,16 +1,13 @@
-import logo from "@/assets/logo.png";
-import { routes } from "@/router/routes";
-import { useNavigate } from "react-router";
+import { themeLogo } from "@/theme/themeLogo";
+import useTheme from "@/theme/useTheme";
+import type { ComponentPropsWithoutRef } from "react";
 
-export default function Logo() {
-  const navigate = useNavigate();
+type LogoProps = ComponentPropsWithoutRef<"img">;
+
+export default function Logo({ className }: LogoProps) {
+  const { resolvedTheme } = useTheme();
 
   return (
-    <img
-      src={logo}
-      alt="Job Hunt"
-      className="h-20 cursor-pointer"
-      onClick={() => navigate(routes.dashboard)}
-    />
+    <img src={themeLogo[resolvedTheme]} alt="Job Hunt" className={className} />
   );
 }
