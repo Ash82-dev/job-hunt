@@ -2,7 +2,7 @@ import ApplicationDetailForm from "@/features/application/components/Application
 
 function ApplicationDetail() {
   return (
-    <section className="flex flex-col gap-8 px-4 py-6">
+    <section className="flex flex-col gap-8  h-full">
       <ApplicationDetailForm />
     </section>
   );

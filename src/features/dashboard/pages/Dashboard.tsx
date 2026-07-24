@@ -2,6 +2,7 @@ import Board from "@/features/dashboard/components/Board";
 import { useApplicationSummary } from "@/features/dashboard/hooks/useApplicationSummary";
 import type { ApplicationStatus } from "@/features/application/types/application.types";
 import { useSearch } from "../contexts/useSearch";
+import Spinner from "@/components/Spinner";
 
 const columns = [
   { title: "Applied", status: "applied" },
@@ -19,7 +20,7 @@ function Dashboard() {
       )
     : applicationsSummary;
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
 
   if (error) return <p>{error.message}</p>;
 

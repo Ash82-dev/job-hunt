@@ -24,6 +24,7 @@ import {
   applicationWorkModesOptions,
 } from "../utils/options";
 import { useEffect } from "react";
+import Spinner from "@/components/Spinner";
 
 function ApplicationDetailForm() {
   const { id } = useParams();
@@ -54,12 +55,12 @@ function ApplicationDetailForm() {
     updateApplication({ id, ...data } as Application);
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
 
   if (error) return <p>{error.message}</p>;
 
   return (
-    <section className="flex flex-col gap-8 px-4">
+    <section className="flex flex-col px-4 py-6 gap-8">
       <ApplicationHeader title={application.company} />
 
       <form
@@ -159,7 +160,7 @@ function ApplicationDetailForm() {
         <Textarea id="notes" label="Notes" {...register("notes")} />
 
         <Button
-          className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed`}
+          className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed w-1/4 ml-auto`}
           isLoading={isLoading || isUpdating}
         >
           Confirm
