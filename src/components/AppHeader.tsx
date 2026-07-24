@@ -1,13 +1,23 @@
+import { LuMenu as MenuIcon } from "react-icons/lu";
 import Logo from "@/features/dashboard/components/Logo";
-// import NavBarIcons from "@/features/dashboard/components/NavBarIcons";
 import Search from "@/features/dashboard/components/SearchBar";
 
-function AppHeader() {
+type AppHeaderProps = {
+  onToggleSidebar: () => void;
+};
+
+function AppHeader({ onToggleSidebar }: AppHeaderProps) {
   return (
     <header className="h-20 px-4 bg-background shadow-md flex items-center justify-between">
-      <Logo />
+      <button className="sm:hidden" onClick={onToggleSidebar}>
+        <MenuIcon size={24} className="text-on-surface cursor-pointer" />
+      </button>
+
+      <div className="hidden sm:block">
+        <Logo />
+      </div>
+
       <Search />
-      {/* <NavBarIcons /> */}
     </header>
   );
 }
