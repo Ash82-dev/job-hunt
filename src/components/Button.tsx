@@ -8,14 +8,14 @@ type ButtonProps = {
 } & ComponentPropsWithoutRef<"button">;
 
 const styles = {
-  base: "enabled:hover:brightness-70 disabled:brightness-50 rounded-sm cursor-pointer flex items-center justify-center",
+  base: "enabled:hover:brightness-70 disabled:brightness-50 disabled:cursor-not-allowed rounded-sm enabled:cursor-pointer flex items-center justify-center",
   primary: "bg-primary text-on-primary",
   error: "bg-tertiary text-on-tertiary",
 };
 
 const sizeStyles = {
   base: "min-h-10",
-  small: "w-fit h-fit",
+  small: "min-h-8 min-w-20",
 };
 
 function Button({

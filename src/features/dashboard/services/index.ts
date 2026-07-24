@@ -1,5 +1,8 @@
 import { supabase } from "@/services/supabase";
-import type { ApplicationSummaryResponse } from "../../application/types/application.types";
+import type {
+  ApplicationStatus,
+  ApplicationSummaryResponse,
+} from "../../application/types/application.types";
 
 export async function getApplicationsSummary(): Promise<
   ApplicationSummaryResponse[]
@@ -11,4 +14,12 @@ export async function getApplicationsSummary(): Promise<
   if (error) throw new Error(error.message);
 
   return applications;
+}
+
+export async function addApplication(title: string, status: ApplicationStatus) {
+  const { error } = await supabase
+    .from("applications")
+    .insert([{ company: title, status }]);
+
+  if (error) throw new Error(error.message);
 }

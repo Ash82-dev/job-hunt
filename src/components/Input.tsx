@@ -24,6 +24,7 @@ function Input({
           {label}
         </label>
       )}
+
       <div
         className={`
           text-on-background
@@ -42,10 +43,7 @@ function Input({
         <input
           {...props}
           name={id}
-          className={
-            className +
-            " flex-1 bg-transparent outline-none placeholder:text-on-surface-variant disabled:cursor-not-allowed"
-          }
+          className={`${className} flex-1 bg-transparent outline-none placeholder:text-on-surface-variant disabled:cursor-not-allowed`}
         />
 
         {trailingIcon}
