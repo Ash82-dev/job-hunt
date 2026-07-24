@@ -1,4 +1,4 @@
-import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/features/auth/hooks/useUser";
 import { Navigate, Outlet } from "react-router";
 import { routes } from "./routes";
 

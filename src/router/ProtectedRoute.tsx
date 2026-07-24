@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router";
 
-import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/features/auth/hooks/useUser";
 import { routes } from "./routes";
 
 function ProtectedRoute() {
