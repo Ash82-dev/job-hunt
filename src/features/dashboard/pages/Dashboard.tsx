@@ -1,6 +1,7 @@
 import Board from "@/features/dashboard/components/Board";
 import { useApplicationSummary } from "@/features/dashboard/hooks/useApplicationSummary";
 import type { ApplicationStatus } from "@/features/application/types/application.types";
+import { useSearch } from "../contexts/useSearch";
 
 const columns = [
   { title: "Applied", status: "applied" },
@@ -9,7 +10,14 @@ const columns = [
 ];
 
 function Dashboard() {
+  const { query } = useSearch();
   const { applicationsSummary, isLoading, error } = useApplicationSummary();
+
+  const filteredApplicationsSummary = query
+    ? applicationsSummary.filter((app) =>
+        app.company.toLowerCase().includes(query.toLowerCase()),
+      )
+    : applicationsSummary;
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -22,7 +30,7 @@ function Dashboard() {
           key={column.status}
           title={column.title}
           status={column.status as ApplicationStatus}
-          applications={applicationsSummary.filter(
+          applications={filteredApplicationsSummary.filter(
             (app) => app.status === column.status,
           )}
         />
