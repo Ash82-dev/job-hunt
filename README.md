@@ -1,77 +1,93 @@
-# React + TypeScript + Vite
+# Job Hunt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Kanban board application for tracking job applications through different stages of the hiring process.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Kanban Board Dashboard** — Visual board with three columns: Applied, Interview, and Rejected
+- **Application Management** — Create, view, and update job applications with detailed information
+- **User Authentication** — Secure sign-up, login, and logout powered by Supabase Auth
+- **Search** — Quickly filter applications by company name
+- **Dark/Light Theme** — Toggle between themes with system preference support
+- **Responsive Design** — Mobile-friendly sidebar and adaptive layouts
+- **Form Validation** — Type-safe forms with React Hook Form and Zod schemas
+- **Real-time Feedback** — Toast notifications for all user actions
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+| Category | Technology |
+|----------|------------|
+| Framework | React 19 |
+| Language | TypeScript 6 |
+| Build Tool | Vite 8 |
+| Styling | Tailwind CSS 4 |
+| Backend | Supabase |
+| State Management | TanStack Query |
+| Forms | React Hook Form |
+| Validation | Zod |
+| Routing | React Router 8 |
+| Notifications | React Hot Toast |
 
-Note: This will impact Vite dev & build performances.
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18+
+- A [Supabase](https://supabase.com) project with auth enabled
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Clone the repository
+git clone https://github.com/your-username/job-hunt.git
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Navigate to project directory
+cd job-hunt
 
+# Install dependencies
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the root directory:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+```
+
+### Development
+
+```bash
+pnpm dev
+```
+
+### Production Build
+
+```bash
+pnpm build
+pnpm preview
+```
+
+## Project Structure
 
 ```
+src/
+├── components/          # Reusable UI components
+├── features/
+│   ├── application/     # Application detail & update logic
+│   ├── auth/            # Authentication (login, register, logout)
+│   ├── dashboard/       # Kanban board & application summary
+│   └── settings/        # User preferences (theme)
+├── layouts/             # App and Auth layout wrappers
+├── pages/               # Error pages (404)
+├── router/              # Route definitions & guards
+├── services/            # Supabase client setup
+├── theme/               # Theme context & provider
+└── types/               # Shared TypeScript types
+```
+
+## License
+
+MIT
