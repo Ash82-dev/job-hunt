@@ -29,7 +29,7 @@ function InputPassword({
         type={inputType}
         label={label}
         trailingIcon={
-          <button onClick={handleToggle}>
+          <button onClick={handleToggle} type="button">
             {inputType === "text" && (
               <LuEyeClosed className="text-primary cursor-pointer" size={20} />
             )}

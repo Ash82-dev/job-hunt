@@ -8,7 +8,7 @@ function RedirectIfAuth() {
 
   if (isAuthenticated) return <Navigate to={routes.dashboard} replace />;
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner fullPage />;
 
   if (!isAuthenticated) return <Outlet />;
 }

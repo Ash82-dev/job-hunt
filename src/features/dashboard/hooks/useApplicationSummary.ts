@@ -6,10 +6,11 @@ export function useApplicationSummary() {
     data: applicationsSummary,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["applicationsSummary"],
     queryFn: getApplicationsSummary,
   });
 
-  return { applicationsSummary, isLoading, error };
+  return { applicationsSummary, isLoading, error, refetch };
 }

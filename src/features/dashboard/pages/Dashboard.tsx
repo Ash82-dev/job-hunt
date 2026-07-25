@@ -3,6 +3,7 @@ import { useApplicationSummary } from "@/features/dashboard/hooks/useApplication
 import type { ApplicationStatus } from "@/features/application/types/application.types";
 import { useSearch } from "../contexts/useSearch";
 import Spinner from "@/components/Spinner";
+import Error from "@/components/Error";
 
 const columns = [
   { title: "Applied", status: "applied" },
@@ -12,7 +13,8 @@ const columns = [
 
 function Dashboard() {
   const { query } = useSearch();
-  const { applicationsSummary, isLoading, error } = useApplicationSummary();
+  const { applicationsSummary, isLoading, error, refetch } =
+    useApplicationSummary();
 
   const filteredApplicationsSummary = query
     ? applicationsSummary.filter((app) =>
@@ -22,7 +24,7 @@ function Dashboard() {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <p>{error.message}</p>;
+  if (error) return <Error message={error?.message} onRetry={refetch} />;
 
   return (
     <div className="flex items-center h-full gap-4 p-4 overflow-x-auto">

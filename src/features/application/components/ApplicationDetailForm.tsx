@@ -25,10 +25,11 @@ import {
 } from "../utils/options";
 import { useEffect } from "react";
 import Spinner from "@/components/Spinner";
+import Error from "@/components/Error";
 
 function ApplicationDetailForm() {
   const { id } = useParams();
-  const { application, isLoading, error } = useApplication(id);
+  const { application, isLoading, error, refetch } = useApplication(id);
   const { updateApplication, isLoading: isUpdating } = useUpdateApplication();
 
   const {
@@ -57,7 +58,7 @@ function ApplicationDetailForm() {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <p>{error.message}</p>;
+  if (error) return <Error message={"test"} onRetry={refetch} />;
 
   return (
     <section className="flex flex-col px-4 py-6 gap-8">

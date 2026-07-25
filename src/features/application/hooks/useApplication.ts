@@ -6,11 +6,12 @@ export function useApplication(id: string) {
     data: application,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["application", id],
     queryFn: () => getApplicationById(id!),
     enabled: !!id,
   });
 
-  return { application, isLoading, error };
+  return { application, isLoading, error, refetch };
 }
