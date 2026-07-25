@@ -32,7 +32,7 @@ function Register() {
     <div className="w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-15 items-center w-full"
+        className="flex flex-col gap-12 items-center w-full"
       >
         <AuthHeader />
 

@@ -55,12 +55,12 @@ function Login() {
             {...register("password")}
           />
 
-          <Link
+          {/* <Link
             to={routes.forgetPassword}
             className="hover:underline hover:text-primary text-on-background"
           >
             Have you forgot your Password?
-          </Link>
+          </Link> */}
         </div>
 
         <div className="w-full flex flex-col gap-4 items-center">
