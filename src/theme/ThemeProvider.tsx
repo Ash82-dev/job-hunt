@@ -8,7 +8,7 @@ type Props = {
 
 export function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem("theme") as Theme) ?? "system";
+    return (localStorage.getItem("theme") as Theme) ?? "dark";
   });
 
   const resolvedTheme: Theme = theme === "dark" ? "dark" : "light";
