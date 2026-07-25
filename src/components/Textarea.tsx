@@ -8,7 +8,7 @@ type TextareaProps = {
 function Textarea({ id, label, className, ...props }: TextareaProps) {
   return (
     <div
-      className={`flex flex-col col-span-2 w-full ${label ? "gap-1" : ""} ${className} `}
+      className={`flex flex-col w-full ${label ? "gap-1" : ""} ${className} `}
     >
       {label && (
         <label className="text-start text-on-background" htmlFor={id}>

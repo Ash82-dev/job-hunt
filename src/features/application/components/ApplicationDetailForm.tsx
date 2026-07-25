@@ -158,10 +158,15 @@ function ApplicationDetailForm() {
           {...register("rejectedDate")}
         />
 
-        <Textarea id="notes" label="Notes" {...register("notes")} />
+        <Textarea
+          id="notes"
+          label="Notes"
+          {...register("notes")}
+          className="sm:col-span-2"
+        />
 
         <Button
-          className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed w-1/4 ml-auto`}
+          className={`sm:col-span-2 mt-6 disabled:cursor-not-allowed px-4 ml-auto`}
           isLoading={isLoading || isUpdating}
         >
           Confirm
