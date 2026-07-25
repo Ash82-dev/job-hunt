@@ -11,15 +11,10 @@ export const themeOptions: SelectOption[] = [
     label: "Dark",
     value: "dark",
   },
-  {
-    label: "System",
-    value: "system",
-  },
 ];
 
 type ThemeContextType = {
   theme: Theme;
-  resolvedTheme: Theme;
   setTheme: (theme: Theme) => void;
 };
 

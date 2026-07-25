@@ -11,30 +11,16 @@ export function ThemeProvider({ children }: Props) {
     return (localStorage.getItem("theme") as Theme) ?? "dark";
   });
 
-  const resolvedTheme: Theme = theme === "dark" ? "dark" : "light";
-
   useEffect(() => {
     const root = document.documentElement;
 
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const applyTheme = () => {
-      const isDark = theme === "dark" || (theme === "system" && media.matches);
-
-      root.classList.toggle("dark", isDark);
-    };
-
-    applyTheme();
-
-    media.addEventListener("change", applyTheme);
+    root.classList.toggle("dark", theme === "dark");
 
     localStorage.setItem("theme", theme);
-
-    return () => media.removeEventListener("change", applyTheme);
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
