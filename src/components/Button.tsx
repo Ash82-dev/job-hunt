@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai";
 
 type ButtonProps = {
-  variant?: "primary" | "small" | "error";
+  variant?: "primary" | "error";
   size?: "base" | "small";
   isLoading?: boolean;
 } & ComponentPropsWithoutRef<"button">;

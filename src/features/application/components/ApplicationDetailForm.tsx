@@ -58,7 +58,7 @@ function ApplicationDetailForm() {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <Error message={"test"} onRetry={refetch} />;
+  if (error) return <Error message={error.message} onRetry={refetch} />;
 
   return (
     <section className="flex flex-col px-4 py-6 gap-8">

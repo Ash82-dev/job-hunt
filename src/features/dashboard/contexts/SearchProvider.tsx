@@ -6,7 +6,7 @@ type SearchProviderProps = {
 };
 
 function SearchProvider({ children }: SearchProviderProps) {
-  const [query, setQuery] = useState<string>();
+  const [query, setQuery] = useState<string>("");
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 import { BiLogOut as LogoutIcon } from "react-icons/bi";
 import { LuX as CloseIcon } from "react-icons/lu";
 
@@ -5,8 +7,6 @@ import { routes } from "@/router/routes";
 import AppSideBarItem from "./AppSideBarItem";
 import Button from "./Button";
 import { useLogout } from "@/features/auth/hooks/useLogout";
-import { useLocation } from "react-router";
-import { useEffect } from "react";
 import Logo from "@/features/dashboard/components/Logo";
 
 type SideBarItems = {
@@ -36,7 +36,8 @@ function AppSideBar({ isOpen, onClose }: AppSideBarProps) {
 
   useEffect(() => {
     onClose();
-  }, [location.pathname, onClose]);
+    // eslint-disable-next-line
+  }, [location.pathname]);
 
   return (
     <>

@@ -1,6 +1,5 @@
 import { getCurrentUser } from "@/features/auth/services";
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 export function useUser() {
   const {
@@ -12,9 +11,5 @@ export function useUser() {
     queryFn: getCurrentUser,
   });
 
-  if (error) {
-    toast.error(error?.message);
-  }
-
-  return { isAuthenticated: user?.role === "authenticated", isLoading };
+  return { isAuthenticated: user?.role === "authenticated", isLoading, error };
 }
