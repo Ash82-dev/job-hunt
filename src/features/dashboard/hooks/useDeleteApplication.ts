@@ -1,17 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateApplication as update } from "@/services";
-import type { Application } from "@/features/application/types/application.types";
 import toast from "react-hot-toast";
+
 import {
   APPLICATIONS_KEY,
   APPLICATIONS_SUMMARY_KEY,
 } from "@/constants/react-query-keys";
+import { deleteApplication as deleteApplicationApi } from "@/services";
 
-export function useUpdateApplication() {
+export function useDeleteApplication() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateApplication, isPending } = useMutation({
-    mutationFn: (newApplication: Application) => update(newApplication),
+  const { mutate: deleteApplication, isPending } = useMutation({
+    mutationKey: [APPLICATIONS_KEY],
+    mutationFn: (id: string) => deleteApplicationApi(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [APPLICATIONS_KEY],
@@ -28,5 +29,5 @@ export function useUpdateApplication() {
     },
   });
 
-  return { updateApplication, isLoading: isPending };
+  return { deleteApplication, isLoading: isPending };
 }

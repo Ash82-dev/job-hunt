@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getApplicationsSummary } from "../services";
+import { getApplicationsSummary } from "@/services";
+import { APPLICATIONS_SUMMARY_KEY } from "@/constants/react-query-keys";
 
 export function useApplicationSummary() {
   const {
@@ -8,7 +9,7 @@ export function useApplicationSummary() {
     error,
     refetch,
   } = useQuery({
-    queryKey: ["applicationsSummary"],
+    queryKey: [APPLICATIONS_SUMMARY_KEY],
     queryFn: getApplicationsSummary,
   });
 

@@ -1,5 +1,6 @@
+import { APPLICATIONS_KEY } from "@/constants/react-query-keys";
+import { getApplicationById } from "@/services";
 import { useQuery } from "@tanstack/react-query";
-import { getApplicationById } from "../services";
 
 export function useApplication(id: string) {
   const {
@@ -8,7 +9,7 @@ export function useApplication(id: string) {
     error,
     refetch,
   } = useQuery({
-    queryKey: ["application", id],
+    queryKey: [APPLICATIONS_KEY, id],
     queryFn: () => getApplicationById(id!),
     enabled: !!id,
   });

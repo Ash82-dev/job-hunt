@@ -1,3 +1,4 @@
+import { USER_KEY } from "@/constants/react-query-keys";
 import { getCurrentUser } from "@/features/auth/services";
 import { useQuery } from "@tanstack/react-query";
 
@@ -7,7 +8,7 @@ export function useUser() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["user"],
+    queryKey: [USER_KEY],
     queryFn: getCurrentUser,
   });
 

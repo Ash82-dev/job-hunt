@@ -6,6 +6,7 @@ import type {
 } from "../../application/types/application.types";
 import ApplicationItem from "./ApplicationItem";
 import { useState } from "react";
+import Button from "@/components/Button";
 
 type BoardProps = {
   title: string;
@@ -35,12 +36,15 @@ function Board({ title, status, applications }: BoardProps) {
           <span className="border-r-2 border-outline pr-2">
             {applications.length}
           </span>
-          <button
-            className="pl-2 cursor-pointer"
+
+          <Button
+            variant="raw"
+            size="raw"
+            className="pl-2"
             onClick={() => setIsCreating(true)}
           >
             <Plus size={12} />
-          </button>
+          </Button>
         </div>
       </header>
 

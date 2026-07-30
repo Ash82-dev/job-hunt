@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FaRegTrashAlt as DeleteIcon } from "react-icons/fa";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -14,6 +15,7 @@ import {
   addApplicationSchema,
   type AddApplicationFormData,
 } from "../schema/dashboard.schema";
+import { useDeleteApplication } from "../hooks/useDeleteApplication";
 
 type ApplicationItemProps = {
   mode?: "creating" | "item";
@@ -29,6 +31,9 @@ function ApplicationItem({
   application,
 }: ApplicationItemProps) {
   const navigate = useNavigate();
+  const { addApplication, isLoading: isAdding } = useAddApplication();
+  const { deleteApplication, isLoading: isDeleting } = useDeleteApplication();
+
   const {
     register,
     handleSubmit,
@@ -37,7 +42,6 @@ function ApplicationItem({
     resolver: zodResolver(addApplicationSchema),
     mode: "onChange",
   });
-  const { addApplication, isLoading } = useAddApplication();
 
   function onSubmit(data: AddApplicationFormData) {
     if (data.title) {
@@ -61,6 +65,7 @@ function ApplicationItem({
           placeholder="Application title"
           error={errors.title?.message}
           {...register("title")}
+          autoFocus
         />
 
         <div className="flex gap-2 justify-end">
@@ -68,7 +73,7 @@ function ApplicationItem({
             type="submit"
             size="small"
             disabled={!isValid}
-            isLoading={isLoading}
+            isLoading={isAdding}
           >
             Add
           </Button>
@@ -77,7 +82,7 @@ function ApplicationItem({
             type="reset"
             size="small"
             variant="error"
-            disabled={isLoading}
+            disabled={isAdding}
             onClick={onCancel}
           >
             Cancel
@@ -89,12 +94,24 @@ function ApplicationItem({
 
   return (
     <li
-      className="bg-surface px-2 py-4 rounded-md shadow-md text-on-surface cursor-pointer"
+      className="bg-surface px-3 py-4 rounded-md shadow-md text-on-surface cursor-pointer flex items-center justify-between"
       onClick={() =>
         navigate(routes.createRouteApplicationDetail(application.id))
       }
     >
       <h3>{application.company}</h3>
+      <Button
+        variant="error"
+        size="raw"
+        className="p-1.5"
+        isLoading={isDeleting}
+        onClick={(e) => {
+          e.stopPropagation();
+          deleteApplication(application.id);
+        }}
+      >
+        <DeleteIcon size={20} className="text-on-error" />
+      </Button>
     </li>
   );
 }

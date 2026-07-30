@@ -4,12 +4,13 @@ import toast from "react-hot-toast";
 
 import { logoutUser } from "../services";
 import { routes } from "@/router/routes";
+import { USER_KEY } from "@/constants/react-query-keys";
 
 export function useLogout() {
   const navigate = useNavigate();
 
   const { mutate: logout, isPending } = useMutation({
-    mutationKey: ["user"],
+    mutationKey: [USER_KEY],
     mutationFn: logoutUser,
     onSuccess: () => {
       navigate(routes.login);

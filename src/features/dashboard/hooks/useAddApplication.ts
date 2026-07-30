@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addApplication as addApplicationApi } from "../services";
+import { addApplication as addApplicationApi } from "@/services";
 import toast from "react-hot-toast";
 import type { ApplicationStatus } from "@/features/application/types/application.types";
+import { APPLICATIONS_SUMMARY_KEY } from "@/constants/react-query-keys";
 
 type AddApplicationPayload = {
   title: string;
@@ -20,7 +21,7 @@ export function useAddApplication() {
       addApplicationApi(title, status),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["applicationsSummary"],
+        queryKey: [APPLICATIONS_SUMMARY_KEY],
       });
 
       toast.success("Application added successfully!");
