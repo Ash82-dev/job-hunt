@@ -1,4 +1,5 @@
 import { FaPlus as Plus } from "react-icons/fa6";
+import { useDroppable } from "@dnd-kit/core";
 
 import type {
   ApplicationStatus,
@@ -20,12 +21,20 @@ const borderStyles = {
   rejected: "border-status-rejected",
 };
 
+const activeRingStyles = {
+  applied: "ring-status-applied",
+  interview: "ring-status-interview",
+  rejected: "ring-status-rejected",
+};
+
 function Board({ title, status, applications }: BoardProps) {
   const [isCreating, setIsCreating] = useState(false);
+  const { setNodeRef, isOver } = useDroppable({ id: status });
 
   return (
     <div
-      className={`bg-surface-variant basis-90 min-w-90 grow h-full rounded-xl p-4 border-t-4 ${borderStyles[status]}`}
+      ref={setNodeRef}
+      className={`bg-surface-variant basis-90 min-w-90 grow h-full rounded-xl p-4 border-t-4 ${borderStyles[status]} transition-all duration-200 ${isOver ? `ring-2 ${activeRingStyles[status]} shadow-lg` : ""}`}
     >
       <header
         className={`flex items-center justify-between text-on-surface-variant pb-2 border-b-2 border-outline`}

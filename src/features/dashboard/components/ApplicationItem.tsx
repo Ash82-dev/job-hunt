@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaRegTrashAlt as DeleteIcon } from "react-icons/fa";
+import { FaGripVertical as GripIcon } from "react-icons/fa6";
+import { useDraggable } from "@dnd-kit/core";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -54,6 +56,11 @@ function ApplicationItem({
     }
   }
 
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    id: application?.id ?? "creating-placeholder",
+    disabled: mode === "creating",
+  });
+
   if (mode === "creating") {
     return (
       <form
@@ -94,16 +101,20 @@ function ApplicationItem({
 
   return (
     <li
-      className="bg-surface px-3 py-4 rounded-md shadow-md text-on-surface cursor-pointer flex items-center justify-between"
+      ref={setNodeRef}
+      className={`bg-surface px-3 py-4 rounded-md shadow-md text-on-surface cursor-pointer flex items-center gap-2 transition-opacity ${isDragging ? "opacity-40" : ""}`}
       onClick={() =>
         navigate(routes.createRouteApplicationDetail(application.id))
       }
+      {...listeners}
+      {...attributes}
     >
-      <h3>{application.company}</h3>
+      <GripIcon className="text-on-surface-variant/60 shrink-0 cursor-grab" />
+      <h3 className="truncate flex-1">{application.company}</h3>
       <Button
         variant="error"
         size="raw"
-        className="p-1.5"
+        className="p-1.5 shrink-0"
         isLoading={isDeleting}
         onClick={(e) => {
           e.stopPropagation();

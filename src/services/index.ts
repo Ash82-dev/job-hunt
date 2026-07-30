@@ -51,6 +51,18 @@ export async function updateApplication(newApplication: Application) {
   if (error) throw new Error(error.message);
 }
 
+export async function updateApplicationStatus(
+  id: string,
+  status: ApplicationStatus,
+) {
+  const { error } = await supabase
+    .from("applications")
+    .update({ status })
+    .eq("id", id);
+
+  if (error) throw new Error(error.message);
+}
+
 export async function deleteApplication(id: string) {
   const { error } = await supabase.from("applications").delete().eq("id", id);
 
