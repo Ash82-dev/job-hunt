@@ -10,7 +10,11 @@ import {
 export function useUpdateApplication() {
   const queryClient = useQueryClient();
 
-  const { mutate: updateApplication, isPending } = useMutation({
+  const {
+    mutate: updateApplication,
+    isPending,
+    error,
+  } = useMutation({
     mutationFn: (newApplication: Application) => update(newApplication),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -28,5 +32,5 @@ export function useUpdateApplication() {
     },
   });
 
-  return { updateApplication, isLoading: isPending };
+  return { updateApplication, isLoading: isPending, error };
 }
