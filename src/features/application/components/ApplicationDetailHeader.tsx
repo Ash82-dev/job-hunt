@@ -4,6 +4,7 @@ import { FaArrowRight as BackIcon } from "react-icons/fa6";
 import Button from "@/components/Button";
 import { routes } from "@/router/routes";
 import type { ReactNode } from "react";
+import capitalize from "@/utils/capitalize";
 
 type ApplicationDetailHeaderProps = {
   title: string;
@@ -18,7 +19,7 @@ function ApplicationHeader({
 
   return (
     <header className="flex items-center justify-between">
-      <h2 className="text-3xl text-on-surface">{title}</h2>
+      <h2 className="text-3xl text-on-surface">{capitalize(title)}</h2>
 
       <div className="flex gap-4">
         {children}

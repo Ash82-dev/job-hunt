@@ -18,6 +18,7 @@ import {
   type AddApplicationFormData,
 } from "../schema/dashboard.schema";
 import { useDeleteApplication } from "../hooks/useDeleteApplication";
+import capitalize from "@/utils/capitalize";
 
 type ApplicationItemProps = {
   mode?: "creating" | "item";
@@ -110,7 +111,7 @@ function ApplicationItem({
       {...attributes}
     >
       <GripIcon className="text-on-surface-variant/60 shrink-0 cursor-grab" />
-      <h3 className="truncate flex-1">{application.company}</h3>
+      <h3 className="truncate flex-1">{capitalize(application.company)}</h3>
       <Button
         variant="error"
         size="raw"

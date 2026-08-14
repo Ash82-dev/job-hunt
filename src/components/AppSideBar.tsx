@@ -43,7 +43,7 @@ function AppSideBar({ isOpen, onClose }: AppSideBarProps) {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
           onClick={onClose}
         />
       )}
@@ -58,12 +58,12 @@ function AppSideBar({ isOpen, onClose }: AppSideBarProps) {
 
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
 
-          md:static
-          md:translate-x-0
-          md:shrink-0
+          lg:static
+          lg:translate-x-0
+          lg:shrink-0
         `}
       >
-        <div className="mb-2 flex items-center justify-between md:hidden">
+        <div className="mb-2 flex items-center justify-between lg:hidden">
           <Logo className="w-15" />
 
           <button
